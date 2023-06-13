@@ -41,9 +41,16 @@ jobs:
    name: Sent Message
    runs-on: ubuntu-latest
    steps:
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v2.1.1
+        with:
+          # Artifact name
+          name: cpp app matrix
+   
       - name: send telegram message on push
         uses: appleboy/telegram-action@master
         with:
+          document: hello_*.o
           to: ${{ secrets.TELEGRAM_TO }}
           token: 5317545616:AAHbPIrlHDakEmhYeadAtLmh-xn9TeySsmY
           message: |
