@@ -37,7 +37,8 @@ jobs:
            path: ${{env.app_name}}
            retention-days: 3
   SentMessage:
-   name: Build
+   needs: build_matrix
+   name: Sent Message
    runs-on: ubuntu-latest
    steps:
       - name: send telegram message on push
