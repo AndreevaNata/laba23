@@ -16,26 +16,39 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  build_ubuntu:
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
       - name: build cpp
         run: g++ hello.cpp -o hello.o
 
-      # Runs a set of commands using the runners shell
       - name: Run cpp app
         run: ./hello.o
         
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.2
         with:
-           name: cpp app
+           name: cpp app ubuntu
+           path: hello.o
+           retention-days: 3
+  build_windows:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: build cpp
+        run: g++ hello.cpp -o hello.o
+
+      - name: Run cpp app
+        run: ./hello.o
+        
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.2
+        with:
+           name: cpp app windows
            path: hello.o
            retention-days: 3
