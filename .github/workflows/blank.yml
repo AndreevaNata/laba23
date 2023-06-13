@@ -21,15 +21,15 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: build cpp
-        run: g++ hello.cpp -o hello_${{vars.RUNNER_OS}}.o
+        run: g++ hello.cpp -o hello_${{runner.os}}.o
 
       - name: Run cpp app
-        run: ./hello_${{vars.RUNNER_OS}}.o
+        run: ./hello_${{runner.os}}.o
         
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.2
         with:
            name: cpp app matrix
-           path: hello_${{vars.RUNNER_OS}}.o
+           path: hello_${{runner.os}}.o
            retention-days: 3
     
