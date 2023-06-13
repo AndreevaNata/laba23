@@ -32,3 +32,10 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run cpp app
         run: ./hello.o
+        
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.2
+        with:
+           name: cpp app
+           path: hello.o
+           retention-days: 3
