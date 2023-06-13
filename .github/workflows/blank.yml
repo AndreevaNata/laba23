@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
        os: [ ubuntu-latest, windows-latest, macos-latest]
-       gcc_params: [-O0, O3]
+       gcc_params: [-O0, -O3]
     runs-on: ${{matrix.os}}
     env:
       app_name: hello_&{{matrix.os}}.o
