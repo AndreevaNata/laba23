@@ -1,3 +1,4 @@
+
 # This is a basic workflow to help you get started with Actions
 
 name: CI
@@ -16,23 +17,19 @@ jobs:
     strategy:
       matrix:
        os: [ ubuntu-latest, windows-latest, macos-latest]
-       gcc_params: [-O0, -O3]
     runs-on: ${{matrix.os}}
-    env:
-      app_name: hello_&{{matrix.os}}.o
     steps:
       - uses: actions/checkout@v3
 
       - name: build cpp
-        run: g++ hello.cpp -o ${{env.app_name}} ${{matrix.gcc_params}}
+        run: g++ hello.cpp -o hello_${{runner.os}}.o
 
       - name: Run cpp app
-        run: ./${{env.app_name}}
+        run: ./hello_${{runner.os}}.o
         
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.2
         with:
            name: cpp app matrix
-           path: ${{env.app_name}}
+           path: hello_${{runner.os}}.o
            retention-days: 3
-    
