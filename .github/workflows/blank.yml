@@ -52,3 +52,21 @@ jobs:
            name: cpp app windows
            path: hello.o
            retention-days: 3
+  build_macos:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: build cpp
+        run: g++ hello.cpp -o hello.o
+
+      - name: Run cpp app
+        run: ./hello.o
+        
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.2
+        with:
+           name: cpp app macos
+           path: hello.o
+           retention-days: 3
