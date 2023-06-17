@@ -60,13 +60,13 @@ jobs:
             Repository: ${{ github.repository }}
             
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
-  MyRunner:
-   runs-on: self-hosted
-   steps:
-      - name:  print env
-        run: env
-      - name: echo
-        run: echo 1 >> 1.txt
+#   MyRunner:
+#    runs-on: self-hosted
+#    steps:
+#       - name:  print env
+#         run: env
+#       - name: echo
+#         run: echo 1 >> 1.txt
         
       
    
