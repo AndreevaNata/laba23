@@ -21,21 +21,30 @@ jobs:
     runs-on: ${{matrix.os}}
     env:
       app_name: hello_${{matrix.os}}.o
+   
     steps:
-      - uses: actions/checkout@v3
+#      - uses: actions/checkout@v2  
+#      - name: Python Linter
+#        uses: sunnysid3up/python-linter@master
+#        with:
+#            source: "src"
+#            mypy-options: "--ignore-missing-imports --show-error-codes"
+#            pylint-options: "--rcfile=setup.cfg"
+#            isort-options: "-w 100"
+#            django: true
+     - uses: actions/checkout@v3
+     - name: build cpp
+       run: g++ hello.cpp -o ${{env.app_name}} 
 
-      - name: build cpp
-        run: g++ hello.cpp -o ${{env.app_name}} 
-
-      - name: Run cpp app
-        run: ./${{env.app_name}}
+     - name: Run cpp app
+       run: ./${{env.app_name}}
         
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v3.1.2
-        with:
-           name: cpp app matrix
-           path: ${{env.app_name}}
-           retention-days: 3
+     - name: Upload a Build Artifact
+       uses: actions/upload-artifact@v3.1.2
+       with:
+        name: cpp app matrix
+        path: ${{env.app_name}}
+        retention-days: 3
   SentMessage:
    needs: build_matrix
    name: Sent Message
