@@ -18,7 +18,7 @@ jobs:
     runs-on: ${{matrix.os}}
     env:
       app_name: hello_${{matrix.os}}.o
-      TEST_TAG: hexletcomponents/devops-example-app:test
+      TEST_TAG: andr1nat/test:test
    
     steps:
     
@@ -70,7 +70,7 @@ jobs:
        with:
           context: .
           push: true
-          tags: hexletcomponents/devops-example-app:latest
+          tags: andr1nat/test:latest
         
   SentMessage:
    needs: build_matrix
