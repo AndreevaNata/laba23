@@ -1,5 +1,5 @@
 FROM ubuntu:latest
 WORKDIR /app
 COPY hello.cpp .
-RUN g++ hello.cpp -o hello.o
+RUN g++ -o hello hello.cpp
 ENTRYPOINT ["./hello"]
