@@ -1,5 +1,9 @@
-FROM ubuntu:latest
+FROM gcc:latest
+
 WORKDIR /app
+
 COPY hello.cpp .
-CMD ["g++ hello.cpp -o hello"]
+
+RUN g++ hello.cpp -o hello
+
 CMD ["./hello"]
