@@ -23,6 +23,19 @@ jobs:
       app_name: hello_${{matrix.os}}.o
    
     steps:
+     - uses: actions/checkout@v3
+     - uses: cpp-linter/cpp-linter-action@v2
+       id: linter
+       env:
+         GITHUB_TOKEN: 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
+       with:
+          style: file
+
+     - name: Fail fast?!
+       if: steps.linter.outputs.checks-failed > 0
+       run: echo "Some files failed the linting checks!"
+        # for actual deployment
+        # run: exit 1
 #      - uses: actions/checkout@v2  
 #      - name: Python Linter
 #        uses: sunnysid3up/python-linter@master
